@@ -18,9 +18,30 @@ class Comment(models.Model):
  	created= models.DateField() 	#(date created)
  	updated = models.DateField() 	#(date updated)
  	post= models.ForeignKey (Post,related_name = 'message posted')		#(foreign key linking Comment to Post)
+	def body_60(self):
+		return self.body[:60]
 	def __unicode__(self):
 		return self.author
+class CommentInline(admin.TabularInline):
+	model=Comment
 
-admin.site.register(Post)
-admin.site.register(Comment)
+class PostAdmin(admin.ModelAdmin):
+	list_display =('title','created','updated')
+	search_fields=('title','body')
+	list_filter=('created',)
+	inlines = [CommentInline]
+
+	
+	
+
+class CommentAdmin(admin.ModelAdmin):
+	list_display = ('post','author','body_60','created','updated')
+	list_filter =('created','updated')
+
+
+ 
+	
+
+admin.site.register(Post,PostAdmin)
+admin.site.register(Comment,CommentAdmin)
 
