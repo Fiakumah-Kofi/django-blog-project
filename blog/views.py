@@ -10,17 +10,25 @@ from models import Post, Comment
 
 def post_list(request):
     post_list = Post.objects.all()
-    
-    print type(post_list)
-    print post_list
-    
-    return HttpResponse('This should be a list of posts!')
+    output=''
+    for stuff  in post_list :
+	output+= str(stuff.title) + str(stuff.body) + str(stuff.id)+"<br>"
+    return HttpResponse(output)
+
 
 def post_detail(request, id, showComments=False):
-    return HttpResponse('yoni the lady killer')
+    number= Post.objects.get(id=id)
+    comment =''
+    if (showComments != None):
+	comment = Comment.objects.filter(post=id)
+	return HttpResponse(comment)
+
+    return HttpResponse(number)
     
 def post_search(request, term):
-    pass
+   anything = Post.objects.filter(body_contains= term)
+   return HttpResponse(anything)
+
 
 def home(request):
     print 'it works'
