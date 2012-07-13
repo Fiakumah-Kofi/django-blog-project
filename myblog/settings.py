@@ -8,11 +8,16 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
 import dj_database_url
 DATABASES = {
 	'default' : dj_database_url.config(default="sqlite:/blog_dev.db")
 }
+
 TIME_ZONE = 'Africa/Accra'
+
+import os
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 
 #DATABASES = {
@@ -110,12 +115,13 @@ ROOT_URLCONF = 'myblog.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'myblog.wsgi.application'
+TEMPLATE_DIRS = (os.path.join(SITE_ROOT,'templates'),)
 
-TEMPLATE_DIRS = (
+#TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-)
+#)
 
 INSTALLED_APPS = (
     'blog',

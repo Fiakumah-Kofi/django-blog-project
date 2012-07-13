@@ -1,0 +1,12 @@
+{% extends "blog/base.html"%}
+{% block content %}
+<p>
+ 		Search item : {{term}}<br/>
+
+		{%for items in posts %}
+
+		{{ items.title }}
+
+		{%endfor%}
+</p>
+{% endblock %}

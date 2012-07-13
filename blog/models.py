@@ -10,6 +10,9 @@ class Post(models.Model):
  	updated = models.DateField ()	#(date updated)
  	def __unicode__(self):
 		return self.title
+	@models.permalink
+	def get_absolute_url(self):
+		return ('post_detail',(),{'id':self.id,'showComments':'true/'})
 
 
 class Comment(models.Model):
