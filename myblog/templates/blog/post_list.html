@@ -4,10 +4,11 @@
 <p>
 	<ul>
 		<li>	
-			Post  : <a href = "../posts/{{ item.id}}">{{item.title}} </a>
-			Date created :{{ item.created}} <br/>
-			Date updated : {{ item.updated }}<br/>
-				{{item.body_60}}
+			Post  : <a href = "../posts/{{ item.id}}">{{item.title}} </a><br/>
+			Date created :{{ item.created}} </br>
+			Date updated : {{ item.updated }}</br></br></br>
+
+				{{item.body|slice:":60"}}
 		</li>
 	</ul>
 

@@ -3,10 +3,13 @@
 <p>
  		Search item : {{term}}<br/>
 
-		{%for items in posts %}
-
-		{{ items.title }}
-
+		{%for items in post %}
+<ul>
+	
+	 <li>	{{ items.title }} </li><br/> 
+                <li>{{ items.body }} </li><br/>
+               <li> {{ items.created }}</li><br/>
+</ul>
 		{%endfor%}
 </p>
 {% endblock %}
