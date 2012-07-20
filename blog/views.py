@@ -38,13 +38,15 @@ def post_detail(request, id, showComments = False):
     post = Post.objects.get(pk=id)
     comment = Comment(post=post)
     comments=''
-    if request.method == 'POST':	
-  	form = CommentForm(request.POST, instance=comment)
+    form = CommentForm()
+    if request.method == 'POST':
+        print
+ 	form = CommentForm(request.POST, instance=comment)
 	if form.is_valid():
-            form.save()
+                form.save()
 	return HttpResponseRedirect(request.path)# bring you back to the same page
     else:
-	form = CommentForm
+	form = CommentForm()
 
    
     if (showComments != None):

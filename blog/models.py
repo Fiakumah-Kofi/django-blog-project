@@ -6,8 +6,8 @@ from django.contrib import admin
 class Post(models.Model):
  	title =  models.CharField(max_length =60)	#(60 characters)
 	body = models.TextField()	#(large text)
- 	created = models.DateField ()	#(date created)
- 	updated = models.DateField ()	#(date updated)
+ 	created = models.DateField (auto_now_add = True)	#(date created)
+ 	updated = models.DateField (auto_now = True)	#(date updated)
  	def __unicode__(self):
 		return self.title
 	@models.permalink
@@ -18,8 +18,8 @@ class Post(models.Model):
 class Comment(models.Model):
  	body = models.TextField()	#(large text)
  	author= models.CharField(max_length = 60)	#(60 characters)
- 	created= models.DateField() 	#(date created)
- 	updated = models.DateField() 	#(date updated)
+ 	created= models.DateField(auto_now_add = True) 	#(date created)
+ 	updated = models.DateField(auto_now = True) 	#(date updated)
  	post= models.ForeignKey (Post,related_name = 'message posted')		#(foreign key linking Comment to Post)
 	def body_60(self):
 		return self.body[:60]
